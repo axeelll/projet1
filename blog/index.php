@@ -30,6 +30,20 @@ $result=getAllComment();
   <h2 align="center"><a href="#">BLOG</a></h2>
 </div>
   <br />
+  <div class="form-group">
+     <input type="text" name="title_name" id="title_name" class="form-control" placeholder="Titre" />
+    </div>
+    <div class="form-group">
+     <textarea name="article_content" id="article_content" class="form-control" placeholder="Article" rows="5"></textarea>
+    </div>
+    <div class="form-group">
+     <input type="hidden" name="article_id" id="article_id" value="0" />
+     <input type="submit" name="add" id="add" class="" value="Ajouter" onclick="send_article()"/>
+     <div id="display_article">
+    </div>
+
+
+
   <div class="container">
     <div class="form-group">
      <input type="text" name="comment_name" id="comment_name" class="form-control" placeholder="Nom" />
@@ -57,6 +71,42 @@ $result=getAllComment();
 </html>
 
 <script>
+function send_article(){
+   
+   var req = new XMLHttpRequest();
+
+   req.onreadystatechange = function() {
+       
+   };
+
+   req.open('POST','add_article.php');
+
+   var data = new FormData();
+   data.append('article',document.getElementById('article_content').value);
+   req.send(data);
+
+   
+   var get = document.getElementById("article_content").value;   
+   var create = document.createElement("div");
+   create.innerHTML = get ;
+
+   var parent = document.getElementById("display_article");
+   parent.appendChild(create);
+ }
+
+
+ </script>
+
+
+<script>
+
+
+
+
+
+
+
+
 
 
   function send_coment(){
